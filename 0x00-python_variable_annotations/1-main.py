@@ -1,7 +1,8 @@
 #!/usr/bin/env python3
-def add(a: float, b: float) -> float:
-    '''
-    type-annotated function add that takes a float a and a
-    float b as arguments and returns their sum as a floa
-    '''    
-    return a + b
+concat = __import__('1-concat').concat
+
+str1 = "egg"
+str2 = "shell"
+
+print(concat(str1, str2) == "{}{}".format(str1, str2))
+print(concat.__annotations__)
