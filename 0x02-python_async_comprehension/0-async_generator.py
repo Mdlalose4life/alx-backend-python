@@ -11,6 +11,7 @@ from typing import Generator
 
 
 async def async_generator() -> Generator[float, None, None]:
+    """Loop takes 10 seconds, waits 1 second each loop """
     for i in range(10):
         await asyncio.sleep(1)
         yield random.random() * 10
