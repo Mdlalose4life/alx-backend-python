@@ -34,7 +34,7 @@ class TestAccessNestedMap(unittest.TestCase):
     @parameterized.expand(
         [
             ({"a": 1}, ("a",), 1),
-            ({"a": {"b": 2}}, ("a",),{"b": 2}),
+            ({"a": {"b": 2}}, ("a",), {"b": 2}),
             ({"a": {"b": 2}}, ("a", "b"), 2)
         ]
     )
@@ -43,17 +43,19 @@ class TestAccessNestedMap(unittest.TestCase):
         """
         results = access_nested_map(nested_map, path)
         self.assertEqual(results, expected_results)
-    
+
     @parameterized.expand(
         [
             ({}, ("a",), KeyError),
             ({"a": 1}, ("a", "b"), KeyError)
         ]
     )
-    def test_access_nested_map_exception(self, nested_map, path, expected_results):
+    def test_access_nested_map_exception(self, nested_map, path,
+                                        expected_results):
         """
-        Implement TestAccessNestedMap.test_access_nested_map_exception. Use the assertRaises
-        context manager to test that a KeyError is raised for the following inputs
+        Implement TestAccessNestedMap.test_access_nested_map_exception.
+        Use the assertRaises context manager to test that a KeyError is
+        raised for the following inputs
         (use @parameterized.expand):
             nested_map={}, path=("a",)
             nested_map={"a": 1}, path=("a", "b")
@@ -61,7 +63,8 @@ class TestAccessNestedMap(unittest.TestCase):
         """
         with self.assertRaises(expected_results) as context:
             access_nested_map(nested_map, path)
-    
+
+
 class TestGetJson(unittest.TestCase):
     """
     parameterized
@@ -86,7 +89,7 @@ class TestMemoize(unittest.TestCase):
     utils.memoize decorator. Implement the TestMemoize(unittest.TestCase)
     class with a test_memoize method.
     Inside test_memoize, define following class
-    
+
         class TestClass:
         def a_method(self):
             return 42
@@ -94,9 +97,9 @@ class TestMemoize(unittest.TestCase):
         @memoize
         def a_property(self):
             return self.a_method()
-    Use unittest.mock.patch to mock a_method. Test that when calling a_property
-    twice, the correct result is returned but a_method is only called once using
-    assert_called_once.
+    Use unittest.mock.patch to mock a_method. Test that when
+    calling a_property twice, the correct result is returned
+    but a_method is only called once using assert_called_once.
     """
     def test_memoize(self):
         """
