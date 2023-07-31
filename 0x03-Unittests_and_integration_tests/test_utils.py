@@ -21,6 +21,7 @@ returns the expected result.
 The body of the test method should not be longer than 2 lines.
 """
 import unittest
+import requests
 from unittest.mock import Mock, patch
 from parameterized import parameterized
 from utils import access_nested_map, get_json
@@ -63,6 +64,7 @@ class TestAccessNestedMap(unittest.TestCase):
     
 class TestGetJson(unittest.TestCase):
     """
+    parameterized
     """
     @parameterized.expand(
         [
@@ -73,6 +75,6 @@ class TestGetJson(unittest.TestCase):
     def test_get_json(self, url, expected_results):
         mock_url_response = Mock()
         mock_url_response.json.return_value = expected_results
-        with patch('request.get', return_value=mock_url_response):
+        with patch('requests.get', return_value=mock_url_response):
             response = get_json(url)
             self.assertEqual(response, expected_results)
